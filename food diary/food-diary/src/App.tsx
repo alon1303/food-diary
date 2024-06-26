@@ -1,5 +1,5 @@
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Navbar from "./components/Navbar/Navbar";
 import { Route, Router, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar></Navbar>
-      <div className="App">
+      <div className="App bg-black">
         
         <Routes>
           <Route path="/" element={MainPage()}></Route>
