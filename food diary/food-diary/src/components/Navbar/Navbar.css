@@ -1,0 +1,15 @@
+.nav-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    
+}
+.span{
+    font-size: 2rem;
+    font-weight: bold;
+    color:black
+}
+.link{
+    text-decoration: none;
+    
+}
