@@ -10,9 +10,9 @@ import MyDiarys from "./components/MyDiarys/MyDiarys";
 function App() {
   return (
     <BrowserRouter>
+      
+      <div className="App">
       <Navbar></Navbar>
-      <div className="App bg-black">
-        
         <Routes>
           <Route path="/" element={MainPage()}></Route>
           <Route path="/my-diarys" element={MyDiarys()}></Route>

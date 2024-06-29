@@ -1,4 +1,3 @@
-
 import "./Navbar.css";
 
 import "../../assets/burger.png";
@@ -10,10 +9,12 @@ const Navbar = () => {
     <div className="nav-bar">
       <Link className="link" to={"/"}>
         <BurgerSvg2 />
-        <span className="span bg-black">Food Diary</span>
+
+        <span className="span">Food Diary</span>
       </Link>
-      <Link className="link" to={"/my-diarys"}>
+      <Link className="link ml-7" to={"/my-diarys"}>
         <DiarySvg />
+
         <span className="span">My Diarys</span>
       </Link>
     </div>

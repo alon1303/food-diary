@@ -1,6 +1,6 @@
-const MyDiarys=()=>{
-    return(
-        <></>
-    )
-}
-export default MyDiarys
+const MyDiarys = () => {
+  return <div>
+    
+  </div>;
+};
+export default MyDiarys;
