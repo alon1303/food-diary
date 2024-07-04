@@ -1,6 +1,6 @@
 import "./Navbar.css";
 
-import "../../assets/burger.png";
+
 import { Link } from "react-router-dom";
 import BurgerSvg2 from "../../assets/svgs/burger2";
 import DiarySvg from "../../assets/svgs/diary";
