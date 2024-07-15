@@ -15,7 +15,7 @@ const MyDiarys = () => {
   return (
     <div className="diarys">
       <div className="diary-btn flex justify-center">
-        <span className="diary-name ">Food tracking</span>
+        <span className="diary-name ">Diary 1</span>
       </div>
       <div
         onClick={handleClick}
