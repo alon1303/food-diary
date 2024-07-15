@@ -12,12 +12,13 @@ const AddDiary = () => {
     if (format === "Choose Format" || diaryName === "") {
       window.alert("fill in the form correctly");
     } else {
-      const diary: Diary = {
-        name: diaryName,
-        format: format,
-        userName: "alon1303",
-      };
-      addDiary(diary);
+      const diary:Diary = {
+        name:diaryName,
+        format:format,
+        userName:"alon1303"
+
+      }
+      addDiary();
     }
   }
   function handleFormat(e: any) {
