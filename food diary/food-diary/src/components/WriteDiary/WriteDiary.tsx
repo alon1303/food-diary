@@ -1,11 +1,21 @@
+import { useState } from "react"
 import "./WriteDiary.css"
-const WriteDiary=()=>{
-    return(
+const WriteDiary = () => {
+    const [content, setContent] = useState<string>()
+    function handleEnterPress(e:any){
+        if(e.code === 'Space'){
+            setContent(e.target.value)
+        }
+    }
+    return (
         <div className="write-container">
-            <div className="write-content"></div>
+            <div className="write-content">
+                {content}
+            </div>
+
             <div className="write-input-container">
 
-            <input className="write-input" type="text"></input>
+                <textarea placeholder="write..." className="write-input"  onKeyDown={handleEnterPress}></textarea>
             </div>
         </div>
     )

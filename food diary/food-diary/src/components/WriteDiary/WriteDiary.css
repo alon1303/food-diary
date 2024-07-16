@@ -10,8 +10,23 @@
     width: 40rem;
     border-radius: 5rem;
     overflow: hidden;
-
+    align-items: center;
+    margin-top: 2rem;
+}
+.write-content{
+    flex-grow: 9;
 }
 .write-input-container{
+    flex-grow: 1;
+    width: 80%;
     
+
+}
+.write-input{
+    width: 100%;
+    min-height: 2.5rem;
+    border-radius: 1rem;
+    resize: none;
+    overflow: hidden;
+
 }
