@@ -1,0 +1,32 @@
+.add-user-container {
+    align-self: center;
+    justify-self: center;
+    margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  height: 15rem;
+  width: 25rem;
+  background-color: #f2f2f2;
+  border-radius: 5%;
+  border: 0.1rem solid black;
+  align-items: center;
+  justify-content: center;
+}
+.input {
+  background-color: #cdcdcd;
+  height: 2rem;
+  width: 20rem;
+  border-radius: 5%;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.submit {
+  background-color: #cdcdcd;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 5%;
+}
+.submit:hover {
+  background-color: #bababa;
+  cursor: pointer;
+}

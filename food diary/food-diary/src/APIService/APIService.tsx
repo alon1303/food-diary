@@ -1,5 +1,5 @@
 import axios from "axios";
-import Diary from "../types/types";
+import {IDiary} from "../types/types";
 
 const apiClient = axios.create({
   baseURL: "http://localhost:8000",
@@ -9,8 +9,8 @@ const apiClient = axios.create({
   },
 });
 
-function addDiary() {
-    const json = JSON.stringify({name:"das", format:"asdsa", userName:"asdassdsadas"})
+function addDiary(diary:IDiary) {
+    const json = JSON.stringify(diary)
     
   apiClient
     .post("/add-diary", json)

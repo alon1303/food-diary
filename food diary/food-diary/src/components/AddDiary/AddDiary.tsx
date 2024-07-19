@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./AddDiary.css";
 import addDiary from "../../APIService/APIService";
-import Diary from "../../types/types";
+import {IDiary} from "../../types/types";
 import CloseBtn from "../../assets/svgs/close-btn";
 
 const AddDiary = () => {
@@ -12,13 +12,13 @@ const AddDiary = () => {
     if (format === "Choose Format" || diaryName === "") {
       window.alert("fill in the form correctly");
     } else {
-      const diary: Diary = {
+      const diary: IDiary = {
         name: diaryName,
         format: format,
         userName: "alon1303"
 
       }
-      addDiary();
+      addDiary(diary);
     }
   }
   function handleFormat(e: any) {

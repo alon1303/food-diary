@@ -1,6 +1,12 @@
-interface Diary{
+
+
+export interface IDiary{
     name:string
     format:string    
     userName:string
 }
-export default Diary;
+
+export interface IUser{
+    userName:string
+    Password:string
+}

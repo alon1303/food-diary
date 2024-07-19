@@ -7,6 +7,7 @@ import MainPage from "./components/MainPage/MainPage";
 import MyDiarys from "./components/MyDiarys/MyDiarys";
 import AddDiary from "./components/AddDiary/AddDiary";
 import WriteDiary from "./components/WriteDiary/WriteDiary";
+import AddUser from "./components/AddUser/AddUser";
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={MainPage()}></Route>
           <Route path="/my-diarys" element={MyDiarys()}></Route>
-          <Route path="/test-components" element={WriteDiary()}></Route>
+          <Route path="/test" element={AddUser()}></Route>
         </Routes>
       </div>
     
