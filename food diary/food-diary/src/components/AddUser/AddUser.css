@@ -20,6 +20,9 @@
   text-align: center;
   margin-bottom: 2rem;
 }
+.input:focus{
+  outline:none;
+}
 .submit {
   background-color: #cdcdcd;
   width: 5rem;
