@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./AddDiary.css";
-import addDiary from "../../APIService/APIService";
+import { addDiary } from "../../APIService";
 import {IDiary} from "../../types/types";
 import CloseBtn from "../../assets/svgs/close-btn";
 

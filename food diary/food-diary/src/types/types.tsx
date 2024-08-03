@@ -8,5 +8,5 @@ export interface IDiary{
 
 export interface IUser{
     userName:string
-    Password:string
+    Password?:string
 }

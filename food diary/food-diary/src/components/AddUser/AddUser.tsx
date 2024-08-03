@@ -1,42 +1,94 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./AddUser.css";
+import { addUser, check_username } from "../../APIService";
+import { IUser } from "../../types";
 import { log } from "console";
 
 const AddUser = () => {
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
-  function isPasswordValid(password: string) {
-    let isUpperCase: boolean = false
-    let isSpecialChar: boolean = false
+  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
+  const [isUserNameValid, setIsUserNameValid] = useState<boolean>(false);
+  function checkPassword(password: string) {
+    let isUpperCase: boolean = false;
+    let isSpecialChar: boolean = false;
+    let isNumber:boolean = false;
     const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    password.split('').map((char) => {
+    let i = 0
+    while(i < password.length && !(isPasswordValid && isUserNameValid && isNumber)){
+      const char = password[i]
       if (specialChars.test(char)) {
-        isSpecialChar = true
+        isSpecialChar = true;
       }
-      if (char === char.toUpperCase()) {
-        isUpperCase = true
+      if ('A' <= char && char <= 'Z') {
+            
+        isUpperCase = true;
       }
-    })
-    return (isUpperCase && isSpecialChar) ? true : false
+      if(/\d/.test(char)){
+        isNumber = true
+      }
+      i++
+    }
+    
+    return isUpperCase && isSpecialChar && isNumber ? true : false;
   }
+
   function handlePassword(e: any) {
-    const password: string = e.target.value.toString()
-    const passwordInputClass = document.getElementById("password")
-    if (isPasswordValid(password) && passwordInputClass) {
-      setPassword(password)
+    const password: string = e.target.value.toString();
+    const passwordInputClass = document.getElementById("password");
+    if (checkPassword(password) && passwordInputClass) {
+      setIsPasswordValid(true);
+      setPassword(password);
       passwordInputClass.style.border = "0.15rem solid green";
     } else if (passwordInputClass) {
+      setIsPasswordValid(false);
       passwordInputClass.style.border = "0.15rem solid red";
     }
   }
-  function handleSubmit() { }
+  function handleUsername(e: any) {
+    const username: string = e.target.value.toString();
+    const usernameInputClass = document.getElementById("username");
+    if (username.length < 4 && usernameInputClass) {
+      setIsUserNameValid(false);
+      usernameInputClass.style.border = "0.15rem solid red";
+    } else if (usernameInputClass) {
+      setIsUserNameValid(true);
+      setUserName(username);
+      usernameInputClass.style.border = "0.15rem solid green";
+    }
+  }
+  async function handleSubmit() {
+    const user: IUser = { userName: userName, Password: password };
+    console.log("submit");
+
+    if (await check_username(userName)) {
+      try {
+        await addUser(user);
+        window.alert("User added successfully!");
+      } catch (error: any) {
+        window.alert("Failed to add user. Please try again.");
+      }
+    } else {
+      window.alert("Username is taken. Please try another one.");
+    }
+  }
+  useEffect(()=>{
+    const submitBtn = document.getElementById("submit") as HTMLButtonElement
+    console.log("useEffect");
+    
+    if(isPasswordValid && isUserNameValid && submitBtn){
+      submitBtn.disabled = false
+    }else{
+      submitBtn.disabled = true
+    }
+  },[isPasswordValid, isUserNameValid])
   return (
     <div className="add-user-container">
       <input
+        id="username"
         className="input"
         placeholder="Enter User Name"
-        onChange={(e) => setUserName(e.target.value)}
+        onChange={handleUsername}
       ></input>
 
       <input
@@ -46,12 +98,9 @@ const AddUser = () => {
         onChange={handlePassword}
       ></input>
 
-      <input
-        placeholder="Submit"
-        type="submit"
-        className="submit"
-        onSubmit={handleSubmit}
-      ></input>
+      <button id="submit" className="submit" onClick={handleSubmit} disabled={true}>
+        Submit
+      </button>
     </div>
   );
 };

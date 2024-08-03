@@ -1,20 +1,38 @@
 import axios from "axios";
-import {IDiary} from "../types/types";
+import { IDiary, IUser } from "../types/types";
 
 const apiClient = axios.create({
   baseURL: "http://localhost:8000",
   headers: {
     "Content-Type": "application/json",
-    
   },
 });
 
-function addDiary(diary:IDiary) {
-    const json = JSON.stringify(diary)
-    
+export function addDiary(diary: IDiary) {
+  const json = JSON.stringify(diary);
   apiClient
-    .post("/add-diary", json)
+    .post("/diarys/add-diary", json)
     .then((response) => console.log(response.data))
     .catch((error) => console.error(error));
 }
-export default addDiary;
+
+export async function check_username(userName: string) {
+  try{
+    const response = await apiClient.get(`/users/check-username/${userName}`)   
+  return response.data
+  }
+  catch(e:any){
+    console.log("Check username error!: ");
+    console.log(e);
+  }
+  
+  
+}
+
+export async function addUser(user:IUser){
+  const json = JSON.stringify(user);
+  await apiClient
+    .post("/users/add-user", json)
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error));
+}
