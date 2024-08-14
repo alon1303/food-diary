@@ -17,22 +17,34 @@ export function addDiary(diary: IDiary) {
 }
 
 export async function check_username(userName: string) {
-  try{
-    const response = await apiClient.get(`/users/check-username/${userName}`)   
-  return response.data
-  }
-  catch(e:any){
+  try {
+    const response = await apiClient.get(`/users/check-username/${userName}`);
+
+    return response.data;
+  } catch (e: any) {
     console.log("Check username error!: ");
     console.log(e);
   }
-  
-  
 }
 
-export async function addUser(user:IUser){
+export async function addUser(user: IUser) {
   const json = JSON.stringify(user);
   await apiClient
     .post("/users/add-user", json)
     .then((response) => console.log(response.data))
     .catch((error) => console.log(error));
+}
+export async function login(user_name: string, password: string) {
+  try {
+    const response = await apiClient.get(`/users/login`, {
+      params: {
+        user_name,
+        password,
+      },
+    });
+    return response.data;
+  } catch (e: any) {
+    console.log("Login Error!: ");
+    console.log(e);
+  }
 }

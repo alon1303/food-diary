@@ -1,7 +1,13 @@
 .nav-bar {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+
+  background-color: #f5f5f5;
+  height: 5rem;
+}
+.nav-bar2 {
+  display: grid;
+  grid-template-columns: 4fr 4fr 8fr 2fr 2fr;
   background-color: #f5f5f5;
   height: 5rem;
 }
@@ -18,6 +24,24 @@
   align-items: center;
   width: 11rem;
 }
-.svg {
-
+.link:hover {
+  background-color: #dbdbdb;
+}
+.sign-in {
+  grid-column: 5;
+}
+.login {
+  grid-column: 4;
+}
+.logout {
+  text-decoration: none;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  font-weight: bolder;
+  font-size: larger;
+  align-items: center;
+  justify-content: center;
+  width: 11rem;
+  grid-column: 5;
 }

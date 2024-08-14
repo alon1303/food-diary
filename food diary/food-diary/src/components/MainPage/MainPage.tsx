@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
-import BurgerSvg2 from "../../assets/svgs/burger2";
-import DiarySvg from "../../assets/svgs/diary";
-
+import { useEffect ,useState} from "react";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
+import { setName } from "../../Redux/userSlice";
 const MainPage = () => {
+  const username = useAppSelector(state=>state.userName.value)
+  
+  
   return (
     <div className="main-page">
-      <Link to={'/my-diarys'}>
-        <DiarySvg />
-      </Link>
+      <h1>Hey {username}</h1>
+      <h1>Welcome to the best diary site!</h1>
     </div>
   );
 };

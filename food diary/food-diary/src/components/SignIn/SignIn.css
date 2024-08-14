@@ -1,7 +1,8 @@
 .add-user-container {
-    align-self: center;
-    justify-self: center;
-    margin-top: 10rem;
+  
+  align-self: center;
+  justify-self: center;
+  
   display: flex;
   flex-direction: column;
   height: 15rem;
@@ -36,5 +37,12 @@
 .submit:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
+}
+.sign-in-title{
+  font-size: larger;
+  font-weight: 700;
+  padding: 1rem;
+   border: 0.1rem solid black;
+   border-radius: 1rem;
 }
 

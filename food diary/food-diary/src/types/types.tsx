@@ -7,6 +7,9 @@ export interface IDiary{
 }
 
 export interface IUser{
-    userName:string
-    Password?:string
+    user_name:string
+    password?:string
 }
+export interface UserNameState {
+    value: string;
+  }
