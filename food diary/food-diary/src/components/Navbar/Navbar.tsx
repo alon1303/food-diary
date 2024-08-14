@@ -1,18 +1,17 @@
-import "./Navbar.css";
-import { Link, LinkProps } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import BurgerSvg2 from "../../assets/svgs/burger2";
 import DiarySvg from "../../assets/svgs/diary";
-import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { useEffect, useRef } from "react";
-import { setisLogged } from "../../Redux/loginSlice";
-import { setName } from "../../Redux/userSlice";
+import { useAppSelector } from "../../Redux/hooks";
+import { setIsLoggedLocalAndStore, setUserNameLocalAndStore } from "../../Redux/store";
+import "./Navbar.css";
 
 const Navbar = () => {
   const isLogged = useAppSelector((state) => state.isLogged.value);
   const signInRef = useRef<HTMLAnchorElement>(null);
   const loginRef = useRef<HTMLAnchorElement>(null);
   const logoutRef = useRef<HTMLButtonElement>(null);
-  const dispatch = useAppDispatch()
+
   function handleLinks() {
     if (signInRef.current && loginRef.current && logoutRef.current) {
       if (isLogged) {
@@ -26,12 +25,13 @@ const Navbar = () => {
       }
     }
   }
-  function handleLogOut(){
-    dispatch(setisLogged(false))
-    dispatch(setName(""))
+  function handleLogOut() {
+    setIsLoggedLocalAndStore(false);
+    setUserNameLocalAndStore("");
   }
   useEffect(() => {
-    handleLinks()
+    handleLinks();
+    
   }, [isLogged]);
   return (
     <div className="nav-bar2">
@@ -52,7 +52,9 @@ const Navbar = () => {
       <Link ref={signInRef} className=" link sign-in" to={"/sign-in"}>
         <span className="span">Sign in</span>
       </Link>
-      <button ref={logoutRef} className=" link logout" onClick={handleLogOut}>Logout</button>
+      <button ref={logoutRef} className=" link logout" onClick={handleLogOut}>
+        Logout
+      </button>
     </div>
   );
 };

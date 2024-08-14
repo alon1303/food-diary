@@ -1,11 +1,6 @@
 export function getUserNameFromLocal() {
-  try {
-    const username = localStorage.getItem("username");
-    return username;
-  } catch (e) {
-    console.error("Could not load username from local storage", e);
-    return undefined;
-  }
+  const username = localStorage.getItem("username");
+  return username;
 }
 export function setUserNameToLocal(username: string) {
   try {
@@ -21,11 +16,8 @@ export function setIsLoggedToLocal(isLogged: boolean) {
     console.error("Could not save isLogged to Local Storage", e);
   }
 }
-export function getIsLoggedToLocal() {
-  try {
-    const isLogged = localStorage.getItem("isLogged");
-    return isLogged === "true" ? true : false;
-  } catch (e) {
-    console.error("Could not get isLogged from local storage");
-  }
+export function getIsLoggedFromLocal() {
+  const isLogged = localStorage.getItem("isLogged");
+
+  return isLogged === "true" ? true : false;
 }

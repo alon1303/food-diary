@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { getUserNameFromLocal } from "../localStorage";
 
 const initialState = {
-  value: "",
+  value: getUserNameFromLocal(),
 };
 const userNameSlice = createSlice({
   name: "userName",

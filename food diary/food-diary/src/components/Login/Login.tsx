@@ -4,10 +4,12 @@ import { setName } from "../../Redux/userSlice";
 import { useNavigate } from "react-router";
 import { useAppDispatch } from "../../Redux/hooks";
 import { setisLogged } from "../../Redux/loginSlice";
+import { setIsLoggedToLocal, setUserNameToLocal } from "../../localStorage";
+import "./Login.css";
+import { setIsLoggedLocalAndStore, setUserNameLocalAndStore } from "../../Redux/store";
 const Login = () => {
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   function handleUsername(e: any) {
     setUserName(e.target.value);
@@ -17,8 +19,8 @@ const Login = () => {
   }
   async function handleSubmit() {
     if ((await login(userName, password)) === true) {
-      dispatch(setName(userName));
-      dispatch(setisLogged(true));
+      setUserNameLocalAndStore(userName);
+      setIsLoggedLocalAndStore(true);
       window.alert("Successfuly logged in!");
       navigate("/");
     } else {

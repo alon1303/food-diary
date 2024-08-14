@@ -1,6 +1,7 @@
 import { useEffect ,useState} from "react";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { setName } from "../../Redux/userSlice";
+import { getUserNameFromLocal } from "../../localStorage";
 const MainPage = () => {
   const username = useAppSelector(state=>state.userName.value)
   
