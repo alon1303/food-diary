@@ -1,28 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userNameSlice, { setName } from "./userSlice";
-import isLoggedSlice, { setisLogged } from "./loginSlice";
-import { useAppDispatch } from "./hooks";
-import {
-  getIsLoggedFromLocal,
-  setIsLoggedToLocal,
-  setUserNameToLocal,
-} from "../localStorage";
+import userSlice, { setUser } from "./userSlice";
+import { setUserToLocal } from "../localStorage";
+import { IUser } from "../types";
+
 export const store = configureStore({
   reducer: {
-    userName: userNameSlice.reducer,
-    isLogged: isLoggedSlice.reducer,
+    user: userSlice.reducer,
   },
 });
 
-export function setIsLoggedLocalAndStore(isLogged: boolean) {
-  setIsLoggedToLocal(isLogged);
+export function setUserLocalAndStore(user: IUser) {
+  setUserToLocal(user);
 
-  store.dispatch(setisLogged(isLogged));
-}
-export function setUserNameLocalAndStore(username: string) {
-  setUserNameToLocal(username);
-
-  store.dispatch(setName(username));
+  store.dispatch(setUser(user));
 }
 // Get the type of our store variable
 export type AppStore = typeof store;

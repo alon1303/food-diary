@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import BurgerSvg2 from "../../assets/svgs/burger2";
 import DiarySvg from "../../assets/svgs/diary";
 import { useAppSelector } from "../../Redux/hooks";
-import { setIsLoggedLocalAndStore, setUserNameLocalAndStore } from "../../Redux/store";
+import { setUserLocalAndStore } from "../../Redux/store";
 import "./Navbar.css";
+import { setUserToLocal } from "../../localStorage";
+import { IUser } from "../../types";
 
 const Navbar = () => {
   const isLogged = useAppSelector((state) => state.isLogged.value);
@@ -26,8 +28,8 @@ const Navbar = () => {
     }
   }
   function handleLogOut() {
-    setIsLoggedLocalAndStore(false);
-    setUserNameLocalAndStore("");
+    const emptyUser:IUser = {user_name:""}
+    setUserLocalAndStore(emptyUser)
   }
   useEffect(() => {
     handleLinks();

@@ -48,3 +48,16 @@ export async function login(user_name: string, password: string) {
     console.log(e);
   }
 }
+export async function getUserId(username:string){
+  try{
+    const response = await apiClient.get('/users/get-user-id',{
+      params:{
+        username
+      }
+    })
+    return response.data
+  }catch(e:any){
+    console.error("get user id error:",e);
+    
+  }
+}

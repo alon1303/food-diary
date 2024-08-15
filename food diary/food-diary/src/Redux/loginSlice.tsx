@@ -1,9 +1,9 @@
 import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
-import { getIsLoggedFromLocal } from "../localStorage";
+import {  } from "../localStorage";
 
 
 const initialState = {
-  value: getIsLoggedFromLocal(),
+  value: false,
 };
 const isLoggedSlice = createSlice({
   name: "isLogged",

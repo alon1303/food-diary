@@ -1,15 +1,12 @@
-
-
-export interface IDiary{
-    name:string
-    format:string    
-    userName:string
+export interface IDiary {
+  name: string;
+  format: string;
+  user_id: string;
 }
 
-export interface IUser{
-    user_name:string
-    password?:string
+export interface IUser {
+  _id?: string;
+  user_name: string;
+  password?: string;
+  is_logged:boolean;
 }
-export interface UserNameState {
-    value: string;
-  }

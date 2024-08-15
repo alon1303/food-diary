@@ -15,7 +15,7 @@ const AddDiary = () => {
       const diary: IDiary = {
         name: diaryName,
         format: format,
-        userName: "alon1303"
+        user_id: "alon1303"
 
       }
       addDiary(diary);

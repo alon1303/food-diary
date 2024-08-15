@@ -1,21 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getUserNameFromLocal } from "../localStorage";
+import { getUserFromLocal } from "../localStorage";
+import { IUser } from "../types";
 
 const initialState = {
-  value: getUserNameFromLocal(),
+  value: getUserFromLocal(),
 };
-const userNameSlice = createSlice({
-  name: "userName",
+const userSlice = createSlice({
+  name: "user",
   initialState,
   reducers: {
-    setName(state, action: PayloadAction<string>) {
-       
+    setUser(state, action: PayloadAction<IUser>) {
+      
       state.value = action.payload;
     }
   },
 });
 
-export const { setName } = userNameSlice.actions;
+export const { setUser } = userSlice.actions;
 
 
-export default userNameSlice;
+export default userSlice;
