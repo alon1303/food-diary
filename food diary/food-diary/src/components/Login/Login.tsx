@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { login } from "../../APIService";
-import { setName } from "../../Redux/userSlice";
+import { getUserId, login } from "../../APIService";
+import { setUser } from "../../Redux/userSlice";
 import { useNavigate } from "react-router";
-import { useAppDispatch } from "../../Redux/hooks";
-import { setisLogged } from "../../Redux/loginSlice";
-import { setIsLoggedToLocal, setUserNameToLocal } from "../../localStorage";
 import "./Login.css";
-import { setIsLoggedLocalAndStore, setUserNameLocalAndStore } from "../../Redux/store";
+import { setUserLocalAndStore } from "../../Redux/store";
+import { IUser } from "../../types";
+
 const Login = () => {
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -19,8 +18,13 @@ const Login = () => {
   }
   async function handleSubmit() {
     if ((await login(userName, password)) === true) {
-      setUserNameLocalAndStore(userName);
-      setIsLoggedLocalAndStore(true);
+      const userId = await getUserId(userName)
+      const user:IUser = {
+        user_name:userName,
+        is_logged:true,
+        _id:userId
+      }
+      setUserLocalAndStore(user)
       window.alert("Successfuly logged in!");
       navigate("/");
     } else {
