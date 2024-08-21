@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IDiary, IUser } from "../types/types";
+import { IDiary, IPage, IUser } from "../types/types";
 
 const apiClient = axios.create({
   baseURL: "http://localhost:8000",
@@ -60,4 +60,29 @@ export async function getUserId(username: string): Promise<string | undefined> {
     console.error("get user id error:", e);
   }
 }
-export async function getDiarysByUserId() {}
+export async function getDiarysByUserId(userId:string):Promise<IDiary[]|undefined> {
+  try{
+    const response = await apiClient.get<IDiary[]>("/diarys/get-diarys-by-user-id",{    
+      params:{
+        userId
+      }
+    })
+    
+    return response.data
+  }catch(e){
+    console.error("Get diarys by usr id Error!: ", e )
+  }
+}
+export async function getPagesByDiaryId(diaryId:string):Promise<IPage[]|undefined> {
+  try{
+    const response = await apiClient.get<IPage[]>("/diarys/get-pages-by-diarys-id",{    
+      params:{
+        diaryId
+      }
+    })
+    
+    return response.data
+  }catch(e){
+    console.error("Get pages by diary id Error!: ", e )
+  }
+}

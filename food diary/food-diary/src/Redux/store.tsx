@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice, { setUser } from "./userSlice";
-import { removeUserFromLocal, setUserToLocal } from "../localStorage";
+import { removeDiaryIdFromLocal, removeUserFromLocal, setDiaryIdToLocal, setUserToLocal } from "../localStorage";
 import { IUser } from "../types";
+import diaryIdSlice, { setDiaryId } from "./diarySlice";
 
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
+    diary: diaryIdSlice.reducer
   },
 });
 
@@ -18,6 +20,17 @@ export function removeUserFromLocalAndStore(){
   const emptyUser: IUser = {user_name:"", is_logged:false}  
   store.dispatch(setUser(emptyUser))
   removeUserFromLocal()
+  
+}
+export function setDiaryIdLocalAndStore(diaryId:string) {
+  setDiaryIdToLocal(diaryId)
+
+  store.dispatch(setDiaryId(diaryId));
+}
+export function removeDiaryIdFromLocalAndStore(){
+  
+  store.dispatch(setDiaryId(""))
+  removeDiaryIdFromLocal()
   
 }
 // Get the type of our store variable

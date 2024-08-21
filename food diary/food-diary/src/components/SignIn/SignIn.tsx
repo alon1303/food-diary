@@ -106,6 +106,7 @@ const SignIn = () => {
         <input
           id="password"
           className="input"
+          type="password"
           placeholder="Enter Password"
           onChange={handlePassword}
         ></input>

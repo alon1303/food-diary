@@ -20,3 +20,24 @@ export function removeUserFromLocal(){
     console.error("Could not remove User from local storage ", e)
   }
 }
+export function getDiaryIdFromLocal() {
+  const diaryId = localStorage.getItem("diaryId");
+  const parsedDiaryId:string = diaryId !== null ?  JSON.parse(diaryId) : null;
+  return parsedDiaryId
+}
+export function setDiaryIdToLocal(diaryId:string) {
+  try {
+    const diaryIdStringify = JSON.stringify(diaryId)
+    localStorage.setItem("diaryId", diaryIdStringify);
+  } catch (e) {
+    console.error("Could not set diaryId to Local Storage", e);
+  }
+}
+export function removeDiaryIdFromLocal(){
+  try{
+    localStorage.removeItem('diaryId')
+  }catch(e){
+    console.error("Could not remove diaryId from local storage ", e)
+  }
+}
+
