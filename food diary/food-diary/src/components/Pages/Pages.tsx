@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import AddDiary from "../AddDiary/AddDiary";
-import "./MyDiarys.css";
 import {IPage } from "../../types";
 import { useAppSelector } from "../../Redux/hooks";
 import CircularProgress from "@mui/material/CircularProgress";
 import { DiaryIcon2, AddSvg, DeleteIcon } from "../../assets/svgs/svgs";
 import { useNavigate } from "react-router";
 import { deletePage, getPagesByDiaryId } from "../../APIService";
-const DiaryPages = () => {
+import { setPageIdLocalAndStore } from "../../Redux/store";
+const Pages = () => {
   const [pages, setPages] = useState<IPage[]>([]);
-  const diaryId = useAppSelector((state) => state.diary.value);
+  const diaryId = useAppSelector((state) => state.ids.value.diaryId);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const loadingIconRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -34,7 +34,10 @@ const DiaryPages = () => {
   }
   useEffect(() => {
     async function loadPages() {
+      console.log(diaryId)
       if (diaryId !== undefined) {
+        console.log(diaryId);
+        
         const pages_res = await getPagesByDiaryId(diaryId);
         if (pages_res !== undefined) {
           setPages(pages_res);
@@ -77,11 +80,11 @@ const DiaryPages = () => {
           <AddSvg />
         </div>
 
-        <span className="span1 ml-5">Add Diary</span>
+        <span className="span1 ml-5">Add Page</span>
       </div>
 
       <AddDiary></AddDiary>
     </div>
   );
 };
-export default DiaryPages;
+export default Pages;

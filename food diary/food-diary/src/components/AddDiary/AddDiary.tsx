@@ -21,6 +21,8 @@ const AddDiary = () => {
       }
       if(await addDiary(diary)){
         window.location.reload()
+      }else{
+        window.alert("Add Diary Error!")
       }
       
                                                                                                                                                                                                  

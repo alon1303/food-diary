@@ -17,7 +17,7 @@ const Login = () => {
     setPassword(e.target.value);
   }
   async function handleSubmit() {
-    if ((await login(userName, password)) === true) {
+    if ((await login(userName, password))) {
       const userId = await getUserId(userName)
       const user:IUser = {
         user_name:userName,

@@ -86,7 +86,7 @@ export async function getPagesByDiaryId(
 ): Promise<IPage[] | undefined> {
   try {
     const response = await apiClient.get<IPage[]>(
-      "/diarys/get-pages-by-diarys-id",
+      "/pages/get-pages-by-diary-id",
       {
         params: {
           diary_id:diaryId,

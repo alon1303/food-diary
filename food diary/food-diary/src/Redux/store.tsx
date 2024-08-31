@@ -1,13 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice, { setUser } from "./userSlice";
-import { removeDiaryIdFromLocal, removeUserFromLocal, setDiaryIdToLocal, setUserToLocal } from "../localStorage";
+import {
+  removeDiaryIdFromLocal,
+  removeUserFromLocal,
+  setDiaryIdToLocal,
+  setUserToLocal,
+  setPageIdToLocal
+} from "../localStorage";
 import { IUser } from "../types";
-import diaryIdSlice, { setDiaryId } from "./diarySlice";
+import { setDiaryId, setPageId } from "./diarySlice";
+import idsSlice from "./diarySlice";
 
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
-    diary: diaryIdSlice.reducer
+    ids: idsSlice.reducer,
   },
 });
 
@@ -16,23 +23,26 @@ export function setUserLocalAndStore(user: IUser) {
 
   store.dispatch(setUser(user));
 }
-export function removeUserFromLocalAndStore(){
-  const emptyUser: IUser = {user_name:"", is_logged:false}  
-  store.dispatch(setUser(emptyUser))
-  removeUserFromLocal()
-  
+export function removeUserFromLocalAndStore() {
+  const emptyUser: IUser = { user_name: "", is_logged: false };
+  store.dispatch(setUser(emptyUser));
+  removeUserFromLocal();
 }
-export function setDiaryIdLocalAndStore(diaryId:string) {
-  setDiaryIdToLocal(diaryId)
+export function setDiaryIdLocalAndStore(diaryId: string) {
+  setDiaryIdToLocal(diaryId);
 
   store.dispatch(setDiaryId(diaryId));
 }
-export function removeDiaryIdFromLocalAndStore(){
+export function setPageIdLocalAndStore(pageId: string) {
+  setPageIdToLocal(pageId);
   
-  store.dispatch(setDiaryId(""))
-  removeDiaryIdFromLocal()
-  
+  store.dispatch(setPageId(pageId));
 }
+// export function removeDiaryIdFromLocalAndStore() {
+//   store.dispatch(setDiaryId(""));
+//   removeDiaryIdFromLocal();
+// }
+
 // Get the type of our store variable
 export type AppStore = typeof store;
 // Infer the `RootState` and `AppDispatch` types from the store itself

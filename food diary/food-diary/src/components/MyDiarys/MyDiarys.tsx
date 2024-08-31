@@ -8,6 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { DiaryIcon2, AddSvg, DeleteIcon } from "../../assets/svgs/svgs";
 import { setDiaryIdLocalAndStore } from "../../Redux/store";
 import { useNavigate } from "react-router";
+import { log } from "console";
 const MyDiarys = () => {
   const [diarys, setDiarys] = useState<IDiary[]>([]);
   const userId = useAppSelector((state) => state.user.value._id);
@@ -31,8 +32,10 @@ const MyDiarys = () => {
   }
   function handleDiaryClick(e:React.MouseEvent<HTMLDivElement, MouseEvent>){
     const diaryId = e.currentTarget.id
+    
+    
     setDiaryIdLocalAndStore(diaryId)
-    navigate("/diary-pages")
+    navigate("/pages")
   }
   useEffect(() => {
     async function loadDiarys() {
