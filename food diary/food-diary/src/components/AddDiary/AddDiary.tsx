@@ -3,22 +3,27 @@ import "./AddDiary.css";
 import { addDiary } from "../../APIService";
 import {IDiary} from "../../types/types";
 import CloseBtn from "../../assets/svgs/close-btn";
+import { useAppSelector } from "../../Redux/hooks";
 
 const AddDiary = () => {
   const [format, setFormat] = useState<string>("Choose Format");
   const [diaryName, setDiaryName] = useState<string>("");
+  const userId = useAppSelector(state=> state.user.value._id)
   const spanValue: string = "Food Diary"
-  function handleSubmit() {
+  async function handleSubmit() {
     if (format === "Choose Format" || diaryName === "") {
       window.alert("fill in the form correctly");
-    } else {
+    } else if(userId){
       const diary: IDiary = {
         name: diaryName,
         format: format,
-        user_id: "alon1303"
-
+        user_id: userId
       }
-      addDiary(diary);
+      if(await addDiary(diary)){
+        window.location.reload()
+      }
+      
+                                                                                                                                                                                                 
     }
   }
   function handleFormat(e: any) {

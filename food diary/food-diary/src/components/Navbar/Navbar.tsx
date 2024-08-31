@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BurgerSvg2 from "../../assets/svgs/burger2";
 import DiarySvg from "../../assets/svgs/diary";
 import { useAppSelector } from "../../Redux/hooks";
@@ -12,6 +12,7 @@ const Navbar = () => {
   const loginRef = useRef<HTMLAnchorElement>(null);
   const diarysRef = useRef<HTMLAnchorElement>(null);
   const logoutRef = useRef<HTMLButtonElement>(null);
+  const navigate = useNavigate()
 
   function handleLinks() {
     if (
@@ -35,6 +36,7 @@ const Navbar = () => {
   }
   function handleLogOut() {
     removeUserFromLocalAndStore();
+    navigate('/')
   }
   useEffect(() => {
     handleLinks();

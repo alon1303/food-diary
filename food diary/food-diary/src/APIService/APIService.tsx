@@ -8,12 +8,14 @@ const apiClient = axios.create({
   },
 });
 
-export function addDiary(diary: IDiary) {
+export async function addDiary(diary: IDiary):Promise<boolean | undefined> {
   const json = JSON.stringify(diary);
-  apiClient
-    .post("/diarys/add-diary", json)
-    .then((response) => console.log(response.data))
-    .catch((error) => console.error(error));
+  try {
+    const response = await apiClient.post<boolean>("/diarys/add-diary", json);
+    return response.data;
+  } catch (e: any) {
+    console.error("add diary Error!: ", e);
+  }
 }
 
 export async function check_username(userName: string) {
@@ -60,29 +62,39 @@ export async function getUserId(username: string): Promise<string | undefined> {
     console.error("get user id error:", e);
   }
 }
-export async function getDiarysByUserId(userId:string):Promise<IDiary[]|undefined> {
-  try{
-    const response = await apiClient.get<IDiary[]>("/diarys/get-diarys-by-user-id",{    
-      params:{
-        userId
+export async function getDiarysByUserId(
+  userId: string
+): Promise<IDiary[] | undefined> {
+  try {
+    const response = await apiClient.get<IDiary[]>(
+      "/diarys/get-diarys-by-user-id",
+      {
+        params: {
+          user_id: userId,
+        },
       }
-    })
-    
-    return response.data
-  }catch(e){
-    console.error("Get diarys by usr id Error!: ", e )
+    );
+
+    return response.data;
+  } catch (e) {
+    console.error("Get diarys by usr id Error!: ", e);
   }
 }
-export async function getPagesByDiaryId(diaryId:string):Promise<IPage[]|undefined> {
-  try{
-    const response = await apiClient.get<IPage[]>("/diarys/get-pages-by-diarys-id",{    
-      params:{
-        diaryId
+export async function getPagesByDiaryId(
+  diaryId: string
+): Promise<IPage[] | undefined> {
+  try {
+    const response = await apiClient.get<IPage[]>(
+      "/diarys/get-pages-by-diarys-id",
+      {
+        params: {
+          diaryId,
+        },
       }
-    })
-    
-    return response.data
-  }catch(e){
-    console.error("Get pages by diary id Error!: ", e )
+    );
+
+    return response.data;
+  } catch (e) {
+    console.error("Get pages by diary id Error!: ", e);
   }
 }

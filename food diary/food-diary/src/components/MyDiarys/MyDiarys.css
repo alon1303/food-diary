@@ -1,12 +1,28 @@
-.diary-btn {
+.diary-btn-add {
   background-color: #cdcdcd;
   border-radius: 5%;
   width: 60%;
   margin-top: 1rem;
   min-height: 2rem;
-  max-height: 2rem;
+  max-height: 3rem;
 }
-.diary-btn:hover {
+.diary-btn-add:hover {
+  cursor: pointer;
+  background-color: #bababa;
+}
+
+.diary-btn{  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  background-color: #cdcdcd;
+  border-radius: 5%;
+  width: 60%;
+  margin-top: 1rem;
+  min-height: 3rem;
+  max-height: 3rem;
+}
+.diary-btn:hover{  
   cursor: pointer;
   background-color: #bababa;
 }
@@ -24,14 +40,21 @@
 }
 
 .add-svg {
-    width: 1.5rem;
+  width: 1.5rem;
   margin-left: 0.5rem;
-  
 }
 .span1 {
   width: 5rem;
+}
+.grid-ratio {
+  grid-template-columns: 1fr 2fr;
+}
+.loading-icon {
+  display: none;
+}
+.diary-icon2{
 
 }
-.grid-ratio{
-    grid-template-columns: 1fr 2fr;
+.diary-name{
+  font-weight: 700;
 }

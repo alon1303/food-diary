@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IUser } from "../types";
-const emptyUser:IUser = {user_name:"", is_logged:false}
+
 
 const initialState = {
   value: "",
