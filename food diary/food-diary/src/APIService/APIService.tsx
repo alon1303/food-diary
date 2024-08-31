@@ -89,7 +89,7 @@ export async function getPagesByDiaryId(
       "/diarys/get-pages-by-diarys-id",
       {
         params: {
-          diaryId,
+          diary_id:diaryId,
         },
       }
     );
@@ -104,6 +104,19 @@ export async function deleteDiary(diaryId:string){
     const response = await apiClient.delete<boolean>('/diarys/delete-diary-by-id',{
       params:{
         diary_id:diaryId
+      }
+    })
+    return response.data
+  }
+  catch(e:any){
+    console.error("Delete Diary Error!: ", e)
+  }
+}
+export async function deletePage(pageId:string){ 
+  try{
+    const response = await apiClient.delete<boolean>('/diarys/delete-page-by-id',{
+      params:{
+        page_id:pageId
       }
     })
     return response.data

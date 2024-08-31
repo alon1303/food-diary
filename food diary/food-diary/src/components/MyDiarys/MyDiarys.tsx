@@ -6,11 +6,14 @@ import { deleteDiary, getDiarysByUserId } from "../../APIService";
 import { useAppSelector } from "../../Redux/hooks";
 import CircularProgress from "@mui/material/CircularProgress";
 import { DiaryIcon2, AddSvg, DeleteIcon } from "../../assets/svgs/svgs";
+import { setDiaryIdLocalAndStore } from "../../Redux/store";
+import { useNavigate } from "react-router";
 const MyDiarys = () => {
   const [diarys, setDiarys] = useState<IDiary[]>([]);
   const userId = useAppSelector((state) => state.user.value._id);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const loadingIconRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate()
   function handleAddDiary() {
     const modal = document.getElementById("modal");
     if (modal) {
@@ -26,6 +29,11 @@ const MyDiarys = () => {
     }else window.alert("error in deleting diary!")
 
   }
+  function handleDiaryClick(e:React.MouseEvent<HTMLDivElement, MouseEvent>){
+    const diaryId = e.currentTarget.id
+    setDiaryIdLocalAndStore(diaryId)
+    navigate("/diary-pages")
+  }
   useEffect(() => {
     async function loadDiarys() {
       if (userId !== undefined) {
@@ -40,6 +48,7 @@ const MyDiarys = () => {
     }
     loadDiarys();
   }, []);
+
   useEffect(() => {
     if (loadingIconRef.current) {
       loadingIconRef.current.style.display = isLoading ? "block" : "none";
@@ -50,7 +59,7 @@ const MyDiarys = () => {
       {diarys.map((diary) => (
                 
         
-        <div id={diary._id} className="diary-btn" key={diary._id}>
+        <div id={diary._id} className="diary-btn" key={diary._id} onClick={handleDiaryClick}>
 
           <DiaryIcon2 className="diary-icon2 ml-3" />
 
