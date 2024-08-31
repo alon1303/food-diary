@@ -1,8 +1,9 @@
 export interface IDiary {
-  _Id?: string;
+  _id?: string;
   name: string;
   format: string;
   user_id: string;
+  create_date?:string
 }
 export interface IUser {
   _id?: string;

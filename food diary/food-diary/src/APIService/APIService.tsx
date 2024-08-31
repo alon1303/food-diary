@@ -1,5 +1,6 @@
 import axios from "axios";
 import { IDiary, IPage, IUser } from "../types/types";
+import { error } from "console";
 
 const apiClient = axios.create({
   baseURL: "http://localhost:8000",
@@ -96,5 +97,18 @@ export async function getPagesByDiaryId(
     return response.data;
   } catch (e) {
     console.error("Get pages by diary id Error!: ", e);
+  }
+}
+export async function deleteDiary(diaryId:string){ 
+  try{
+    const response = await apiClient.delete<boolean>('/diarys/delete-diary-by-id',{
+      params:{
+        diary_id:diaryId
+      }
+    })
+    return response.data
+  }
+  catch(e:any){
+    console.error("Delete Diary Error!: ", e)
   }
 }

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import "./AddDiary.css";
 import { addDiary } from "../../APIService";
 import {IDiary} from "../../types/types";
-import CloseBtn from "../../assets/svgs/close-btn";
+import {CloseBtn} from "../../assets/svgs/svgs";
 import { useAppSelector } from "../../Redux/hooks";
 
 const AddDiary = () => {

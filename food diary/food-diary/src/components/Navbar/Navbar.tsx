@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import BurgerSvg2 from "../../assets/svgs/burger2";
-import DiarySvg from "../../assets/svgs/diary";
+import {DiarySvg,BurgerSvg2} from "../../assets/svgs/svgs";
 import { useAppSelector } from "../../Redux/hooks";
 import { removeUserFromLocalAndStore } from "../../Redux/store";
 import "./Navbar.css";

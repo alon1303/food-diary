@@ -52,9 +52,19 @@
 .loading-icon {
   display: none;
 }
-.diary-icon2{
-
+.delete-icon{
+  display: flex;
+  width: 30%;
+  justify-self: end;
+  margin-right: 1rem;
+  transition: transform 0.5s ease;
+}
+.delete-icon:hover{
+  transform: rotate(180deg);
+  
 }
 .diary-name{
   font-weight: 700;
+  max-width: 5rem;
+  justify-self: center;
 }
